@@ -1,6 +1,6 @@
 # ZooNet
 
-##Transmission Model 
+## Transmission Model 
 This module computes temperature-, humidity-, precipitation-, and proximity-modulated transmission rates (β) for location of reported cases.
 
 ### Structure
