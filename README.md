@@ -1,5 +1,32 @@
 # ZooNet
 
+##Transmission Model 
+This module computes temperature-, humidity-, precipitation-, and proximity-modulated transmission rates (β) for location of reported cases.
+
+### Structure
+```
+transmissionmodel/
+
+├── h5n1_beta_modulation.py       # β calculation logic
+├── get_env_inputs.py             # Environmental data extractor
+├── run_beta_from_csv.py          # Batch calculator from CSV
+└── output_json/                  # Output folder for β results
+```
+
+### Usage
+
+1. Place a CSV in `data/` named `cases_input.csv` with columns:
+   - `latitude`, `longitude`, `date` (`YYYY-MM-DD`)
+2. Run the batch processor:
+```bash
+python run_beta_from_csv.py
+```
+3. Results will be saved to `output_json/cases_with_beta.csv` with a new `beta` column.
+
+### To Change
+Edit `get_env_inputs.py` to replace dummy values with real environmental extraction from:
+
+
 
 ## Quantile Modeling Pipeline for Genetic Divergence Imputation
 
