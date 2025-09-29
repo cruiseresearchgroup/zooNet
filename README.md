@@ -85,9 +85,8 @@ Console output will also include summary statistics and validation metrics for e
 
 ```
 BLUE model/
+├── FullHeteroGNN.py              # Standard GNN implementation for reference
 ├── HeteroGraphNetwork.py         # BLUE implementation
-├── spectral_loss.py              # Spectral Alignment loss implementation
-├── laplacian.py                  # Laplacian Matrix implementation
 ├── MRF.py                        # Markov Random Field smoothing module
 ├── simple_graph_dataset.py       # Windowed time‑series dataset loader
 ├── metrics.py                    # Prediction process
