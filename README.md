@@ -9,18 +9,19 @@ Quantile Regression Imputation (QRI): imputes genetic divergence between pathoge
 BLUE (Bi-Layer hterogeneous graph fUsion nEtwork) – a graph neural network for spatiotemporal epidemic forecasting.
 
 ## Structure
+```
 ZooNet/
-├── transmissionmodel/              # Transmission rate β module
-│   ├── h5n1_beta_modulation.py     # β calculation logic
-│   ├── get_env_inputs.py           # Environmental data extractor
-│   ├── run_beta_from_csv.py        # Batch processor
-│   └── output_json/                # Output β results
+├── transmissionmodel/              
+│   ├── h5n1_beta_modulation.py    
+│   ├── get_env_inputs.py           
+│   ├── run_beta_from_csv.py        
+│   └── output_json/                
 │
-├── transmissionmodel/              # Transmission rate β module
-│   ├── quantile_modeling_pipeline.py     # QRI model + ablation experiments
+├── imputedevolutionarydistance/              
+│   ├── quantile_modeling_pipeline.py     
 
 │
-├── BLUE model/                     # Bi-Layer heterogeneous GNN
+├── BLUE model/                     
 │   ├── FullHeteroGNN.py
 │   ├── HeteroGraphNetwork.py
 │   ├── MRF.py
@@ -30,31 +31,40 @@ ZooNet/
 │   ├── spectral_simple_main.py
 │   └── requirements.txt
 │
-└── data/                           # Example input datasets
+└── data/                           
+```
+
+##Installation
+```bash
+# Clone the repository
+git clone https://github.com/<your-username>/ZooNet.git
+cd ZooNet
+
+# Create environment (example: CUDA 11.8)
+conda create -n zoonet python=3.10
+conda activate zoonet
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+
+
 
 
 ## Transmission Model 
-This module computes temperature-, humidity-, precipitation-, and proximity-modulated transmission rates (β) for location of reported cases.
-
-### Structure
-```
-transmissionmodel/
-
-├── h5n1_beta_modulation.py       # β calculation logic
-├── get_env_inputs.py             # Environmental data extractor
-├── run_beta_from_csv.py          # Batch calculator from CSV
-└── output_json/                  # Output folder for β results
-```
+Computes modulated transmission rates (β) for reported cases.
 
 ### Usage
 
 1. Place a CSV in `data/` named `cases_input.csv` with columns:
    - `latitude`, `longitude`, `date` (`YYYY-MM-DD`)
 2. Run the batch processor:
-```bash
-python run_beta_from_csv.py
 ```
-3. Results will be saved to `output_json/cases_with_beta.csv` with a new `beta` column.
+python transmissionmodel/run_beta_from_csv.py
+```
+3. Results will be saved to `transmissionmodel/output_json/cases_with_beta.csv
+` with a new `beta` column.
 
 ### To Change
 Edit `get_env_inputs.py` to replace dummy values with real environmental extraction from:
@@ -63,11 +73,7 @@ Edit `get_env_inputs.py` to replace dummy values with real environmental extract
 
 ## Quantile Modeling Pipeline for Genetic Divergence Imputation
 
-This repository contains code and a sample dataset for training and evaluating a quantile regression model to impute genetic divergence between pathogen cases. The model incorporates temporal, geographic, and host metadata and supports feature ablation experiments.
-
-### Files
-
-- `quantile_modeling_pipeline.py`: Main script that trains a quantile regression model (QRI) and runs ablation analysis across divergence strata.
+Trains quantile regression models to impute genetic divergence (K80 distance) between pathogen cases using metadata. Includes feature ablation experiments.
 
 ### Input Format
 
@@ -101,34 +107,14 @@ python quantile_modeling_pipeline.py
 This will train quantile regression models across LOW, MID, and HIGH K80 divergence strata, perform feature ablation analysis, and generate performance metrics.
 
 ### Output
+- `output_ablation_results.csv` with predicted quantiles, residuals, divergence strata, and metrics (MAE, RMSE, R², MAPE, interval coverage).
+- Console summary with validation metrics per stratum.
 
-The script generates:
-
-- `output_ablation_results.csv`: Contains:
-  - True and predicted K80 values at 5%, 50%, and 95% quantiles
-  - Residual errors
-  - Divergence stratum class
-  - Metrics including MAE, RMSE, R², MAPE, and 90% interval coverage
-
-Console output will also include summary statistics and validation metrics for each experiment.
 
 ## BLUE: Bi-Layer heterogeneous graph fusion network
+A GNN framework for spatiotemporal outbreak forecasting.
 
-## 🗂️ Repository structure
-
-```
-BLUE model/
-├── FullHeteroGNN.py              # Standard GNN implementation for reference
-├── HeteroGraphNetwork.py         # BLUE implementation
-├── MRF.py                        # Markov Random Field smoothing module
-├── simple_graph_dataset.py       # Windowed time‑series dataset loader
-├── metrics.py                    # Prediction process
-├── Model_metrics.py              # MAE / RMSE / PCC /SCC / F1 Score evaluation metrics
-├── spectral_simple_main.py       # Train / Val / Eval entry‑point
-└── requirements.txt              # environments
-```
-
-## ⚙️ Installation
+### Installation
 
 ```bash
 # 1. Clone the repo
@@ -143,7 +129,7 @@ $ pip install -r requirements.txt  # numpy, pandas, scikit‑learn, tqdm, tensor
 
 ---
 
-## 📄 Dataset preparation
+### Dataset preparation
 
 BLUE expects **weekly graphs** that already combine all raw data into PyG `HeteroData` pickle files
 Each file **must** contain:
@@ -154,7 +140,7 @@ Each file **must** contain:
 * County‑level attributes [`infected count`, 'abundance']
 * Case-level attributes ['importance']
 
-## 🚀 Quick start
+### Quick start
 
 ```bash
 python spectral_simple_main.py \
@@ -194,7 +180,7 @@ During training the script will output fold‑wise **MAE / RMSE / F1 / Pearson /
 
 ---
 
-## 📊 Evaluation metrics
+## Evaluation metrics
 
 The following metrics are computed (see `metrics.py`):
 
