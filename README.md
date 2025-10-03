@@ -8,7 +8,7 @@ A research framework for modeling zoonotic pathogen outbreaks using transmission
 
 
 
-This repository integrates three main components:
+**This repository integrates three main components:**
 
 Transmission Model: computes temperature-, humidity-, precipitation-, and proximity-modulated transmission rates (β).
 
