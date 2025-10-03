@@ -1,4 +1,37 @@
 # ZooNet
+A research framework for modeling zoonotic pathogen outbreaks using transmission models, genetic divergence imputation, and graph-based outbreak forecasting.
+This repository integrates three main components:
+
+Transmission Model: computes temperature-, humidity-, precipitation-, and proximity-modulated transmission rates (β).
+
+Quantile Regression Imputation (QRI): imputes genetic divergence between pathogen cases using spatiotemporal and host metadata.
+
+BLUE (Bi-Layer hterogeneous graph fUsion nEtwork) – a graph neural network for spatiotemporal epidemic forecasting.
+
+## Structure
+ZooNet/
+├── transmissionmodel/              # Transmission rate β module
+│   ├── h5n1_beta_modulation.py     # β calculation logic
+│   ├── get_env_inputs.py           # Environmental data extractor
+│   ├── run_beta_from_csv.py        # Batch processor
+│   └── output_json/                # Output β results
+│
+├── transmissionmodel/              # Transmission rate β module
+│   ├── quantile_modeling_pipeline.py     # QRI model + ablation experiments
+
+│
+├── BLUE model/                     # Bi-Layer heterogeneous GNN
+│   ├── FullHeteroGNN.py
+│   ├── HeteroGraphNetwork.py
+│   ├── MRF.py
+│   ├── simple_graph_dataset.py
+│   ├── metrics.py
+│   ├── Model_metrics.py
+│   ├── spectral_simple_main.py
+│   └── requirements.txt
+│
+└── data/                           # Example input datasets
+
 
 ## Transmission Model 
 This module computes temperature-, humidity-, precipitation-, and proximity-modulated transmission rates (β) for location of reported cases.
