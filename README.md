@@ -1,5 +1,12 @@
 # ZooNet
 A research framework for modeling zoonotic pathogen outbreaks using transmission models, genetic divergence imputation, and graph-based outbreak forecasting.
+
+<p align="center">
+  <img src="assets/framework.pdf" alt="zooNet framework" width="760">
+</p>
+
+
+
 This repository integrates three main components:
 
 Transmission Model: computes temperature-, humidity-, precipitation-, and proximity-modulated transmission rates (β).
