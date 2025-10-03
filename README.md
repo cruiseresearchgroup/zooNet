@@ -8,6 +8,8 @@ Quantile Regression Imputation (QRI): imputes genetic divergence between pathoge
 
 BLUE (Bi-Layer hterogeneous graph fUsion nEtwork) – a graph neural network for spatiotemporal epidemic forecasting.
 
+![ZooNet demo](assets/weeks_all.gif)
+
 ## Structure
 ```
 ZooNet/
