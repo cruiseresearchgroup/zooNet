@@ -127,7 +127,6 @@ $ conda activate blue
 $ pip install -r requirements.txt  # numpy, pandas, scikit‑learn, tqdm, tensorboard, pytorch, torch_geometric, scatter, etc.
 ```
 
----
 
 ### Dataset preparation
 
