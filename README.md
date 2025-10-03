@@ -1,8 +1,10 @@
 # ZooNet
 A research framework for modeling zoonotic pathogen outbreaks using transmission models, genetic divergence imputation, and graph-based outbreak forecasting.
 
-![Framework](assets/framework.jpeg)
 
+<p align="center">
+  <img src="assets/framework.jpeg" alt="zooNet framework" width="760">
+</p>
 
 
 
