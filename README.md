@@ -34,7 +34,7 @@ ZooNet/
 └── data/                           
 ```
 
-##Installation
+## Installation
 ```bash
 # Clone the repository
 git clone https://github.com/<your-username>/ZooNet.git
